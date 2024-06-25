@@ -76,7 +76,7 @@ Please provide exactly 30 username suggestions, each on a new line. Ensure they 
 Now, generate 30 username suggestions based on the provided criteria. Show results randomly."""
 
     try:
-        response = openai.ChatCompletion.create(
+        response = openai.Completion.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": prompt}],
             max_tokens=200,
