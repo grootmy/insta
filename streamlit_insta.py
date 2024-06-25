@@ -8,7 +8,7 @@ load_dotenv()
 # OpenAI API 설정
 key_id = os.getenv("OPENAI_API_KEY")
 client = OpenAI(
-    api_key= key_id,
+    api_key= key_id
 )
 
 def generate_usernames(input_name, account_type, favorite_words, mood):
@@ -96,9 +96,9 @@ Now, generate 30 username suggestions based on the provided criteria. Show resul
 st.title("Instagram Username Generator")
 
 input_name = st.text_input("이름 또는 단어 입력:", "")
-account_type = st.selectbox("계정 유형 선택:", ["Official", "Photo", "Work showcase", "Daily life"])
+account_type = st.selectbox("계정 유형 선택:", ["Daily life", "Official", "Photo", "Work showcase"])
 favorite_words = st.text_input("좋아하는 단어 3개 입력 (쉼표로 구분):", "").split(',')
-mood = st.radio("원하는 아이디 무드 선택:", ["Cool", "Cute", "일반"])
+mood = st.radio("원하는 아이디 무드 선택:", ["일반","Cool", "Cute"])
 
 if st.button("아이디 생성"):
     if input_name and len(input_name.strip()) >= 3:
