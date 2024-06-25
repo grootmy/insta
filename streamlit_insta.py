@@ -1,12 +1,15 @@
 import streamlit as st
-import openai
+from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
 # OpenAI API 설정
-openai.api_key = os.getenv("OPENAI_API_KEY")
+key_id = os.getenv("OPENAI_API_KEY")
+client = OpenAI(
+    api_key= key_id,
+)
 
 def generate_usernames(input_name, account_type, favorite_words, mood):
     prompt = f"""Create a list of 30 creative Instagram username suggestions based on the following criteria:
@@ -76,7 +79,7 @@ Please provide exactly 30 username suggestions, each on a new line. Ensure they 
 Now, generate 30 username suggestions based on the provided criteria. Show results randomly."""
 
     try:
-        response = openai.Completion.create(
+        response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": prompt}],
             max_tokens=200,
@@ -92,20 +95,20 @@ Now, generate 30 username suggestions based on the provided criteria. Show resul
 
 st.title("Instagram Username Generator")
 
-input_name = st.text_input("Enter a name or word:", "")
-account_type = st.selectbox("Select account type:", ["Official", "Photo", "Work showcase", "Daily life"])
-favorite_words = st.text_input("Enter three favorite words (comma-separated):", "").split(',')
-mood = st.radio("Select desired mood:", ["Cool", "Cute"])
+input_name = st.text_input("이름 또는 단어 입력:", "")
+account_type = st.selectbox("계정 유형 선택:", ["Official", "Photo", "Work showcase", "Daily life"])
+favorite_words = st.text_input("좋아하는 단어 3개 입력 (쉼표로 구분):", "").split(',')
+mood = st.radio("원하는 아이디 무드 선택:", ["Cool", "Cute", "일반"])
 
-if st.button("Generate Usernames"):
+if st.button("아이디 생성"):
     if input_name and len(input_name.strip()) >= 3:
-        with st.spinner("Generating usernames..."):
+        with st.spinner("아이디 생성 중..."):
             suggestions = generate_usernames(input_name.strip(), account_type, favorite_words, mood)
         if suggestions:
-            st.success("Username suggestions generated successfully!")
+            st.success("아이디 제안이 성공적으로 생성되었습니다!")
             for suggestion in suggestions:
                 st.write(suggestion)
         else:
-            st.warning("No username suggestions were generated. Please try again.")
+            st.warning("아이디 제안을 생성하지 못했습니다. 다시 시도해 주세요.")
     else:
-        st.error("Please provide a valid name with at least 3 characters.")
+        st.error("최소 3글자 이상의 유효한 이름을 입력해 주세요.")
