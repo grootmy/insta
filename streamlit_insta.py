@@ -61,9 +61,10 @@ Rules:
 5. Avoid offensive language and existing brand names
 6. Use spelling variations and number substitutions
 7. Combine words creatively
-8. For 'Cute' mood, include cute emojis or soft-sounding words
-9. For 'Cool' mood, use trendy abbreviations or edgy combinations
-10. For Korean inputs, use romanized versions or English equivalents
+8. Change the Spelling to similar Spelling
+9. For 'Cute' mood, include cute text emojis or soft-sounding words(e.g. bok0.0wy, bok_wyV.V)
+10. For 'Cool' mood, use trendy abbreviations or edgy combinations(e.g., bok_x_wy)
+11. For Korean inputs, use romanized versions or English equivalents
 
 Return only the usernames, one per line, without explanations or numbering.
 """
