@@ -44,7 +44,6 @@ Create ID Guidelines:
 - Maintain diversity so that all proposals do not follow the same pattern
 - Don't use direct mood words
 - Do not use the letter 'x' and underscore(_) at the end of the whole word
-- if their is option number: {number} use it.
 
 **Additional guidelines:**
 - **Use spelling changes or numbers:** 
@@ -69,7 +68,7 @@ Create ID Guidelines:
   - **nomal:** forcus on gidelines
   - **Cool:** Use "x" to emojis between words
     - - 예: JayxZ, Jay_Z
-  - **Cute:** Use emoticons between words (e.g. "0_0", "o.o", "o_o", "v.v")
+  - **Cute:** Include some examples of text emoticons and ASCII art emoticons between words (e.g. "0_0", "o.o", "o_o", "v.v")
     - Example: jazz0.0z
 
 - **Pretty ID conditions:**
@@ -89,10 +88,10 @@ Please place the IDs made of each condition evenly and show them.
         response = client.chat.completions.create(
             model="gpt-3.5-turbo-0125",
             messages=[{"role": "user", "content": prompt}],
-            max_tokens=500,
+            max_tokens=300,
             n=1,
             stop=None,
-            temperature=0.9,
+            temperature=1.5,
         )
         suggestions = response.choices[0].message.content.strip().split('\n')
         return [suggestion.strip() for suggestion in suggestions]
