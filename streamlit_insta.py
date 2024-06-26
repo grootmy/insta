@@ -26,9 +26,9 @@ def generate_usernames_batch(prompt):
             model="gpt-3.5-turbo-0125",
             messages=[{"role": "user", "content": prompt}],
             max_tokens=500,
-            n=1,
+            n=5,
             stop=None,
-            temperature=0.8,
+            temperature=1.5,
         )
         # 반환된 각 사용자 이름에서 숫자를 제거합니다.
         return [remove_numbers(username.strip()) for username in response.choices[0].message.content.strip().split('\n')]
@@ -65,6 +65,10 @@ Rules:
 9. For 'Cute' mood, include cute text emojis or soft-sounding words(e.g. bok0.0wy, bok_wyV.V)
 10. For 'Cool' mood, use trendy abbreviations or edgy combinations(e.g., bok_x_wy)
 11. For Korean inputs, use romanized versions or English equivalents
+12. For 'offital' account, Add the "offital" word
+13. For 'Photo' account, Add the 'pic' or 'photo' or 'film'word
+14. For 'Work Showcase' account, Add the "works" or "portfolio" word
+15. For "Daily life" account, Add "diary" or "daily" word
 
 Return only the usernames, one per line, without explanations or numbering.
 """
