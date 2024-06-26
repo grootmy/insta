@@ -78,13 +78,13 @@ Return only the usernames, one per line, without explanations or numbering.
     cache[cache_key] = final_suggestions
     return final_suggestions
 
-st.title("Advanced Instagram Username Generator")
+st.title("Instagram Username Generator")
 
-input_name = st.text_input("Enter name or words to combine (comma-separated):", "").split(',')
-account_type = st.selectbox("Select account type:", ["Normal", "Daily life", "Official", "Photo", "Work showcase"])
-favorite_words = st.text_input("(Optional) Enter favorite words (comma-separated):", "").split(',')
-number = st.text_input("(Optional) Enter desired number:")
-mood = st.radio("Select desired username mood:", ["Random", "Normal", "Cool", "Cute"])
+input_name = st.text_input("이름이나 단어 입력 (쉼표로 구분):", "").split(',')
+account_type = st.selectbox("계정유형 선택:", ["Normal", "Daily life", "Official", "Photo", "Work showcase"])
+favorite_words = st.text_input("(옵션) 좋아하는 단어, 관심사, 주제 (쉼표로 구분):", "").split(',')
+number = st.text_input("(옵션) 넣고 싶은 숫자 입력:")
+mood = st.radio("유저아이디 무드 선택:", ["Random", "Normal", "Cool", "Cute"])
 
 if st.button("Generate Usernames"):
     valid_input_names = [name.strip() for name in input_name if name.strip()]
@@ -95,7 +95,7 @@ if st.button("Generate Usernames"):
             suggestions = generate_usernames(valid_input_names, account_type, favorite_words, number, mood)
             end_time = time.time()
         if suggestions:
-            st.success(f"Username suggestions successfully generated in {end_time - start_time:.2f} seconds!")
+            st.success(f"아이디 생성완료! {end_time - start_time:.2f} seconds!")
             if mood == "Random":
                 st.info(f"Randomly selected mood: {random.choice(['Normal','Cool', 'Cute'])}")
             cols = st.columns(3)
