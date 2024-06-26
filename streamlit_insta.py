@@ -26,9 +26,9 @@ def generate_usernames_batch(prompt):
             model="gpt-3.5-turbo-0125",
             messages=[{"role": "user", "content": prompt}],
             max_tokens=500,
-            n=5,
+            n=2,
             stop=None,
-            temperature=1.5,
+            temperature=1,
         )
         # 반환된 각 사용자 이름에서 숫자를 제거합니다.
         return [remove_numbers(username.strip()) for username in response.choices[0].message.content.strip().split('\n')]
@@ -55,13 +55,13 @@ Number: {number}
 
 Rules:
 1. Length: 5-15 characters
-2. Use lowercase letters, numbers, and underscores
+2. Must Use lowercase letters, numbers, and underscores
 3. Be creative, easy to pronounce, and memorable
 4. Reflect the account type and mood indirectly
 5. Avoid offensive language and existing brand names
 6. Use spelling variations and number substitutions
 7. Combine words creatively
-8. Change the Spelling to similar Spelling
+8. Add and Change the Spelling to similar Spelling
 9. For 'Cute' mood, include cute text emojis or soft-sounding words(e.g. bok0.0wy, bok_wyV.V)
 10. For 'Cool' mood, use trendy abbreviations or edgy combinations(e.g., bok_x_wy)
 11. For Korean inputs, use romanized versions or English equivalents
@@ -69,6 +69,11 @@ Rules:
 13. For 'Photo' account, Add the 'pic' or 'photo' or 'film'word
 14. For 'Work Showcase' account, Add the "works" or "portfolio" word
 15. For "Daily life" account, Add "diary" or "daily" word
+16. Consider the French or Spanish words
+17. Please Use the unique Words
+18. Don't use theh "cool" and "cute" word 
+19. Don't put "x" independently at the beginning and end of the sentence
+20. Must use English
 
 Return only the usernames, one per line, without explanations or numbering.
 """
@@ -107,11 +112,11 @@ if st.button("Generate Usernames"):
             for index, suggestion in enumerate(suggestions):
                 cols[index % 3].write(suggestion)
             
-            # User feedback system
-            st.subheader("Feedback")
-            selected_username = st.selectbox("Select your favorite username:", suggestions)
-            if st.button("Submit Feedback"):
-                st.success(f"Thank you for your feedback on '{selected_username}'!")
+            # # User feedback system
+            # st.subheader("Feedback")
+            # selected_username = st.selectbox("Select your favorite username:", suggestions)
+            # if st.button("Submit Feedback"):
+            #     st.success(f"Thank you for your feedback on '{selected_username}'!")
         else:
             st.warning("Failed to generate username suggestions. Please try again.")
     else:
